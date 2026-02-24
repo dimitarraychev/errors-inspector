@@ -14,7 +14,7 @@ export const useReports = () => {
     setLoading(true);
 
     try {
-      const res = await fetch(`/api/reports/`);
+      const res = await fetch(`/api/report/`);
 
       if (!res.ok) throw new Error(`Failed to fetch reports: ${res.status}`);
 
