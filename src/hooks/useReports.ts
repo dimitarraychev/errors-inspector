@@ -3,7 +3,10 @@ import { reportsExample } from "./reportsExample";
 import type { ReportsResponse } from "../types/ReportTypes";
 
 export const useReports = () => {
-  const [reports, setReports] = useState({} as ReportsResponse);
+const [reports, setReports] = useState<ReportsResponse>({
+  since: "",
+  reports: [],
+});
   // const [loading, setLoading] = useState(false);
   // const [error, setError] = useState<string | null>(null);
 
