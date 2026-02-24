@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { reportsExample } from "./reportsExample";
-import type { ReportType } from "../types/ReportType";
+import type { ReportsResponse } from "../types/ReportTypes";
 
 export const useReports = () => {
-  const [reports, setReports] = useState<ReportType[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [reports, setReports] = useState({} as ReportsResponse);
+  // const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState<string | null>(null);
 
   //   const getReports = async () => {
   //     setLoading(true);
@@ -31,8 +31,8 @@ export const useReports = () => {
   }, []);
 
   return {
-    loading,
-    error,
+    // loading,
+    // error,
     reports,
   };
 };
