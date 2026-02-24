@@ -1,0 +1,15 @@
+.reports-container {
+  padding: 1rem;
+  color: white;
+}
+
+.report-item {
+  margin: 1rem 0;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.report-text {
+  margin: 0.25rem 0;
+}
