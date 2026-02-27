@@ -4,7 +4,7 @@ import { useReportContext } from "../../context/ReportContext";
 import { formatDate } from "../../utils/date";
 
 const SideMenu = () => {
-  const { data } = useReportContext();
+  const { data, setSelectedCodes } = useReportContext();
 
   const codeTotals: { [code: string]: number } = {};
 
@@ -17,6 +17,15 @@ const SideMenu = () => {
   const sortedCodes = Object.entries(codeTotals)
     .map(([code, total]) => ({ code, total }))
     .sort((a, b) => b.total - a.total);
+
+  const toggleCode = (code: string) => {
+    setSelectedCodes(
+      (prev) =>
+        prev.includes(code)
+          ? prev.filter((c) => c !== code) 
+          : [...prev, code], 
+    );
+  };
 
   return (
     <div className="side-menu">
@@ -34,7 +43,11 @@ const SideMenu = () => {
         </li>
 
         {sortedCodes.map((report) => (
-          <li className="report-code-nav" key={report.code}>
+          <li
+            className="report-code-nav"
+            key={report.code}
+            onClick={() => toggleCode(report.code)}
+          >
             <span>{report.code}</span>
             <span>{report.total}</span>
           </li>

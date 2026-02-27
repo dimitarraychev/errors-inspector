@@ -12,6 +12,8 @@ interface ReportContextType {
   data: ErrorReportResponse;
   loading: boolean;
   error: string | null;
+  selectedCodes: string[];
+  setSelectedCodes: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 interface ReportContextProviderProps {
@@ -25,7 +27,7 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
     since: "",
     reports: [],
   });
-
+  const [selectedCodes, setSelectedCodes] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -61,6 +63,8 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
     data,
     loading,
     error,
+    selectedCodes,
+    setSelectedCodes,
   };
 
   return (
