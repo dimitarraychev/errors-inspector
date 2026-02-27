@@ -9,7 +9,6 @@
   align-items: center;
   height: 100vh;
   gap: 1rem;
-  position: fixed;
   overflow-y: scroll;
 }
 
@@ -19,6 +18,13 @@ img#logo.selector-logo {
 
 .side-menu ul {
   width: 100%;
+}
+
+.side-menu .since-text {
+  align-self: flex-start;
+  color: var(--dark-gray);
+  padding-left: 0.2rem;
+  font-weight: 500;
 }
 
 .side-menu .report-code-nav-header {

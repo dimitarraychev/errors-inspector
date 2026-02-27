@@ -1,6 +1,7 @@
 import "./SideMenu.css";
 import logo from "../../assets/logo.svg";
 import { useReportContext } from "../../context/ReportContext";
+import { formatDate } from "../../utils/date";
 
 const SideMenu = () => {
   const { data } = useReportContext();
@@ -23,6 +24,8 @@ const SideMenu = () => {
         <img src={logo} alt="Logo" className="logo" />
         <h1 className="logo-text">Errors Inspector</h1>
       </div>
+
+      <p className="since-text">Since {formatDate(data.since)}</p>
 
       <ul>
         <li className="report-code-nav-header">
