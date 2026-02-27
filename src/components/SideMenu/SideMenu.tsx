@@ -3,7 +3,19 @@ import logo from "../../assets/logo.svg";
 import { useReportContext } from "../../context/ReportContext";
 
 const SideMenu = () => {
-  const { data, setCodeToInspect } = useReportContext();
+  const { data } = useReportContext();
+
+  const codeTotals: { [code: string]: number } = {};
+
+  data.reports.forEach((bucket) => {
+    Object.entries(bucket.codes).forEach(([code, count]) => {
+      codeTotals[code] = (codeTotals[code] || 0) + count;
+    });
+  });
+
+  const sortedCodes = Object.entries(codeTotals)
+    .map(([code, total]) => ({ code, total }))
+    .sort((a, b) => b.total - a.total);
 
   return (
     <div className="side-menu">
@@ -17,18 +29,13 @@ const SideMenu = () => {
           <span>Code</span>
           <span>Total</span>
         </li>
-        {data.reports
-          .sort((a, b) => b.total - a.total)
-          .map((report) => (
-            <li
-              className="report-code-nav"
-              key={report.code}
-              onClick={() => setCodeToInspect(report.code)}
-            >
-              <span>{report.code}</span>
-              <span>{report.total}</span>
-            </li>
-          ))}
+
+        {sortedCodes.map((report) => (
+          <li className="report-code-nav" key={report.code}>
+            <span>{report.code}</span>
+            <span>{report.total}</span>
+          </li>
+        ))}
       </ul>
     </div>
   );

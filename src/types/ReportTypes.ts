@@ -1,16 +1,10 @@
-export interface ReportEndpoint {
-  endpoint: string;
-  count: number;
-  latestPeriod: string;
-}
-
-export interface ReportItem {
-  code: string;
+export interface ErrorBucket {
+  period: string;
   total: number;
-  endpoints: ReportEndpoint[];
+  codes: { [key: string]: number };
 }
 
-export interface ReportsResponse {
+export interface ErrorReportResponse {
   since: string;
-  reports: ReportItem[];
+  reports: ErrorBucket[];
 }

@@ -1,5 +1,5 @@
 import "./App.css";
-import ReportsViewer from "./components/ReportsViewer/ReportsViewer";
+// import ReportsViewer from "./components/ReportsViewer/ReportsViewer";
 import SideMenu from "./components/SideMenu/SideMenu";
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
     <div className="app">
       <div className="app-body">
         <SideMenu />
-        <ReportsViewer />
+        {/* <ReportsViewer /> */}
       </div>
     </div>
   );

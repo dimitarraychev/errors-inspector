@@ -5,15 +5,13 @@ import {
   useContext,
   type ReactNode,
 } from "react";
-import type { ReportsResponse } from "../types/ReportTypes";
+import type { ErrorReportResponse } from "../types/ReportTypes";
 import { reportsExample } from "./reportsExample";
 
 interface ReportContextType {
-  data: ReportsResponse;
-  filteredData: ReportsResponse;
+  data: ErrorReportResponse;
   loading: boolean;
   error: string | null;
-  setCodeToInspect: (code: string) => void;
 }
 
 interface ReportContextProviderProps {
@@ -23,61 +21,46 @@ interface ReportContextProviderProps {
 const ReportContext = createContext<ReportContextType | undefined>(undefined);
 
 const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
-  const [data, setData] = useState<ReportsResponse>({
+  const [data, setData] = useState<ErrorReportResponse>({
     since: "",
     reports: [],
   });
-  const [filteredData, setFilteredData] = useState<ReportsResponse>({
-    since: "",
-    reports: [],
-  });
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [codeToInspect, setCodeToInspect] = useState("");
 
-  const getReport = async () => {
-    setLoading(true);
-    setError(null);
+  // const getReport = async () => {
+  //   setLoading(true);
+  //   setError(null);
 
-    try {
-      const res = await fetch(`/api/report/`);
+  //   try {
+  //     const res = await fetch(`/api/report/`);
 
-      if (!res.ok) throw new Error(`Failed to fetch reports: ${res.status}`);
+  //     if (!res.ok) throw new Error(`Failed to fetch reports: ${res.status}`);
 
-      const data = await res.json();
-      setData(data);
-      setError(null);
-    } catch (error: any) {
-      setError(error.message || "Failed to load report");
-      setData({
-        since: "",
-        reports: [],
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+  //     const data = await res.json();
+  //     setData(data);
+  //     setError(null);
+  //   } catch (error: any) {
+  //     setError(error.message || "Failed to load report");
+  //     setData({
+  //       since: "",
+  //       reports: [],
+  //     });
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   useEffect(() => {
     // getReport();
-    setData(reportsExample);
-
-    const filteredByCode: ReportsResponse = {
-      ...data,
-      reports: codeToInspect
-        ? data.reports.filter((report) => report.code === codeToInspect)
-        : data.reports,
-    };
-
-    setFilteredData(filteredByCode);
-  }, [codeToInspect]);
+    setData(reportsExample as unknown as ErrorReportResponse);
+  }, []);
 
   const contextValue = {
     data,
     loading,
     error,
-    setCodeToInspect,
-    filteredData,
   };
 
   return (
