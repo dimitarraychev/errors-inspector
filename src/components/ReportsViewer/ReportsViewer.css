@@ -11,6 +11,10 @@
   padding: 1rem;
 }
 
-.report-text {
+.report-text, .report-header {
   margin: 0.25rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
 }

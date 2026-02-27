@@ -10,8 +10,10 @@ import { reportsExample } from "./reportsExample";
 
 interface ReportContextType {
   data: ReportsResponse;
+  filteredData: ReportsResponse;
   loading: boolean;
   error: string | null;
+  setCodeToInspect: (code: string) => void;
 }
 
 interface ReportContextProviderProps {
@@ -25,8 +27,13 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
     since: "",
     reports: [],
   });
+  const [filteredData, setFilteredData] = useState<ReportsResponse>({
+    since: "",
+    reports: [],
+  });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [codeToInspect, setCodeToInspect] = useState("");
 
   //   const getReport = async () => {
   //     setLoading(true);
@@ -54,12 +61,23 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
   useEffect(() => {
     // getReport();
     setData(reportsExample);
-  }, []);
+
+    const filteredByCode: ReportsResponse = {
+      ...data,
+      reports: codeToInspect
+        ? data.reports.filter((report) => report.code === codeToInspect)
+        : data.reports,
+    };
+
+    setFilteredData(filteredByCode);
+  }, [codeToInspect]);
 
   const contextValue = {
     data,
     loading,
     error,
+    setCodeToInspect,
+    filteredData,
   };
 
   return (

@@ -10,7 +10,7 @@ const ReportsViewer = () => {
 
   return (
     <div className="reports-container">
-      <h3>Reports since: {formatDate(data.since)}</h3>
+      <h3>Since: {formatDate(data.since)}</h3>
       {sortedReports.map((report: ReportItem) => (
         <div className="report-item" key={report.code}>
           <h4>
@@ -18,12 +18,18 @@ const ReportsViewer = () => {
           </h4>
 
           <ul>
+            <li className="report-header">
+              <strong>Endpoint</strong>
+              <span>Latest</span>
+              <span>Total</span>
+            </li>
             {[...report.endpoints]
               .sort((a, b) => b.count - a.count)
-              .map((op: ReportEndpoint) => (
-                <li className="report-text" key={op.endpoint}>
-                  <strong>{op.endpoint}</strong> - Latest:{" "}
-                  {formatDate(op.latestPeriod)} - Total: {op.count}
+              .map((e: ReportEndpoint) => (
+                <li className="report-text" key={e.endpoint}>
+                  <strong>{e.endpoint}</strong>
+                  <span>{formatDate(e.latestPeriod)}</span>
+                  <span>{e.count}</span>
                 </li>
               ))}
           </ul>
@@ -32,9 +38,4 @@ const ReportsViewer = () => {
     </div>
   );
 };
-
-// function _idLabel(id: string) {
-//   return id.includes("/") ? id.split("/").join(" / ") : id;
-// }
-
 export default ReportsViewer;

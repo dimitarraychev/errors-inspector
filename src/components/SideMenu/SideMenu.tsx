@@ -3,7 +3,7 @@ import logo from "../../assets/logo.svg";
 import { useReportContext } from "../../context/ReportContext";
 
 const SideMenu = () => {
-  const { data } = useReportContext();
+  const { data, setCodeToInspect } = useReportContext();
 
   return (
     <div className="side-menu">
@@ -20,7 +20,11 @@ const SideMenu = () => {
         {data.reports
           .sort((a, b) => b.total - a.total)
           .map((report) => (
-            <li className="report-code-nav" key={report.code}>
+            <li
+              className="report-code-nav"
+              key={report.code}
+              onClick={() => setCodeToInspect(report.code)}
+            >
               <span>{report.code}</span>
               <span>{report.total}</span>
             </li>

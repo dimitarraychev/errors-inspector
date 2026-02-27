@@ -39,7 +39,7 @@ img#logo.selector-logo {
   padding: 0.2rem;
   margin: 0.2rem 0;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 500;
   transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
   transition-duration: 200ms;
   transition-property: transform, filter;
