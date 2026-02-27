@@ -21,7 +21,7 @@ img#logo.selector-logo {
   width: 100%;
 }
 
-.report-code-nav-header {
+.side-menu .report-code-nav-header {
   display: flex;
   justify-content: space-between;
   font-size: 0.9rem;
@@ -39,6 +39,10 @@ img#logo.selector-logo {
   padding: 0.2rem;
   margin: 0.2rem 0;
   cursor: pointer;
+  font-weight: 600;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 200ms;
+  transition-property: transform, filter;
 }
 
 .side-menu .report-code-nav.active {
@@ -57,7 +61,7 @@ img#logo.selector-logo {
   align-items: center;
   justify-content: flex-start;
   cursor: pointer;
-  padding: 0.5rem 0 0.5rem 0.75rem;
+  padding: 0.5rem 0 0.5rem 0.2rem;
   margin: 0.5rem 0;
   align-self: flex-start;
   gap: 0.2rem;

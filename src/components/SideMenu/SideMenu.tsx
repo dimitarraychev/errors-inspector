@@ -1,9 +1,9 @@
 import "./SideMenu.css";
 import logo from "../../assets/logo.svg";
-import { useReports } from "../../hooks/useReports";
+import { useReportContext } from "../../context/ReportContext";
 
 const SideMenu = () => {
-  const { data } = useReports();
+  const { data } = useReportContext();
 
   return (
     <div className="side-menu">

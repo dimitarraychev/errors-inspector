@@ -1,10 +1,10 @@
 import "./ReportsViewer.css";
-import { useReports } from "../../hooks/useReports";
 import type { ReportItem, ReportEndpoint } from "../../types/ReportTypes";
 import { formatDate } from "../../utils/date";
+import { useReportContext } from "../../context/ReportContext";
 
 const ReportsViewer = () => {
-  const { data } = useReports();
+  const { data } = useReportContext();
 
   const sortedReports = [...data.reports].sort((a, b) => b.total - a.total);
 
