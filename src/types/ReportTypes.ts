@@ -1,13 +1,13 @@
-export interface ReportOperator {
-  operator: string;
+export interface ReportEndpoint {
+  endpoint: string;
   count: number;
   latestPeriod: string;
 }
 
 export interface ReportItem {
-  _id: string;
+  code: string;
   total: number;
-  operators: ReportOperator[];
+  endpoints: ReportEndpoint[];
 }
 
 export interface ReportsResponse {

@@ -1,29 +1,29 @@
 import "./ReportsViewer.css";
 import { useReports } from "../../hooks/useReports";
-import type { ReportItem, ReportOperator } from "../../types/ReportTypes";
+import type { ReportItem, ReportEndpoint } from "../../types/ReportTypes";
+import { formatDate } from "../../utils/date";
 
 const ReportsViewer = () => {
-  const { reports } = useReports();
+  const { data } = useReports();
 
-  const sortedReports = [...reports.reports].sort((a, b) => b.total - a.total);
+  const sortedReports = [...data.reports].sort((a, b) => b.total - a.total);
 
   return (
     <div className="reports-container">
-      <h3>Reports since: {new Date(reports.since).toLocaleString()}</h3>
+      <h3>Reports since: {formatDate(data.since)}</h3>
       {sortedReports.map((report: ReportItem) => (
-        <div className="report-item" key={report._id}>
+        <div className="report-item" key={report.code}>
           <h4>
-            {_idLabel(report._id)} — Total: {report.total}
+            {report.code} — Total: {report.total}
           </h4>
 
           <ul>
-            {[...report.operators]
+            {[...report.endpoints]
               .sort((a, b) => b.count - a.count)
-              .map((op: ReportOperator) => (
-                <li className="report-text" key={op.operator}>
-                  <strong>{op.operator}</strong> - Latest:{" "}
-                  {new Date(op.latestPeriod).toLocaleString()} - Total:{" "}
-                  {op.count}
+              .map((op: ReportEndpoint) => (
+                <li className="report-text" key={op.endpoint}>
+                  <strong>{op.endpoint}</strong> - Latest:{" "}
+                  {formatDate(op.latestPeriod)} - Total: {op.count}
                 </li>
               ))}
           </ul>
@@ -33,8 +33,8 @@ const ReportsViewer = () => {
   );
 };
 
-function _idLabel(id: string) {
-  return id.includes("/") ? id.split("/").join(" / ") : id;
-}
+// function _idLabel(id: string) {
+//   return id.includes("/") ? id.split("/").join(" / ") : id;
+// }
 
 export default ReportsViewer;

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-// import { reportsExample } from "./reportsExample";
+import { reportsExample } from "./reportsExample";
 import type { ReportsResponse } from "../types/ReportTypes";
 
 export const useReports = () => {
-  const [reports, setReports] = useState<ReportsResponse>({
+  const [data, setData] = useState<ReportsResponse>({
     since: "",
     reports: [],
   });
@@ -19,7 +19,7 @@ export const useReports = () => {
       if (!res.ok) throw new Error(`Failed to fetch reports: ${res.status}`);
 
       const data = await res.json();
-      setReports(data);
+      setData(data);
       setError(null);
     } catch (err: any) {
       setError(err.message || "Unknown error");
@@ -29,13 +29,13 @@ export const useReports = () => {
   };
 
   useEffect(() => {
-    getReports();
-    // setReports(reportsExample);
+    // getReports();
+    setData(reportsExample);
   }, []);
 
   return {
     loading,
     error,
-    reports,
+    data,
   };
 };
