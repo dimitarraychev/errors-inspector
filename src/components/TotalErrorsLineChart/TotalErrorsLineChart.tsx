@@ -70,7 +70,7 @@ const TotalErrorsLineChart = () => {
       width={"100%"}
       height={"100%"}
       data={chartData}
-      margin={{ bottom: 30, right: 30 }}
+      margin={{ bottom: 30, right: 30, top: 30 }}
     >
       <CartesianGrid
         stroke="var(--border)"
