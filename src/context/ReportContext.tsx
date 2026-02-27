@@ -6,7 +6,7 @@ import {
   type ReactNode,
 } from "react";
 import type { ReportsResponse } from "../types/ReportTypes";
-// import { reportsExample } from "./reportsExample";
+import { reportsExample } from "./reportsExample";
 
 interface ReportContextType {
   data: ReportsResponse;
@@ -59,8 +59,8 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
   };
 
   useEffect(() => {
-    getReport();
-    // setData(reportsExample);
+    // getReport();
+    setData(reportsExample);
 
     const filteredByCode: ReportsResponse = {
       ...data,
