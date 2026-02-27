@@ -79,7 +79,7 @@ const TotalErrorsLineChart = () => {
     >
       <CartesianGrid
         stroke="var(--border)"
-        strokeDasharray="5 5"
+        strokeDasharray="5 5 1 5"
         vertical={true}
         horizontal={true}
       />
@@ -90,8 +90,9 @@ const TotalErrorsLineChart = () => {
         angle={-90}
         textAnchor="end"
         dy={25}
+        tick={{ fill: "var(--light-gray)" }}
       />
-      <YAxis tickCount={12} />
+      <YAxis tickCount={12} tick={{ fill: "var(--light-gray)" }} />
       <Tooltip content={<CustomTooltip />} />
 
       <Line
