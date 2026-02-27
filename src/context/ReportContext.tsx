@@ -6,7 +6,7 @@ import {
   type ReactNode,
 } from "react";
 import type { ErrorReportResponse } from "../types/ReportTypes";
-// import { reportsExample } from "./reportsExample";
+import { reportsExample } from "./reportsExample";
 
 interface ReportContextType {
   data: ErrorReportResponse;
@@ -31,32 +31,32 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const getReport = async () => {
-    setLoading(true);
-    setError(null);
+  // const getReport = async () => {
+  //   setLoading(true);
+  //   setError(null);
 
-    try {
-      const res = await fetch(`/api/report/`);
+  //   try {
+  //     const res = await fetch(`/api/report/`);
 
-      if (!res.ok) throw new Error(`Failed to fetch reports: ${res.status}`);
+  //     if (!res.ok) throw new Error(`Failed to fetch reports: ${res.status}`);
 
-      const data = await res.json();
-      setData(data);
-      setError(null);
-    } catch (error: any) {
-      setError(error.message || "Failed to load report");
-      setData({
-        since: "",
-        reports: [],
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
+  //     const data = await res.json();
+  //     setData(data);
+  //     setError(null);
+  //   } catch (error: any) {
+  //     setError(error.message || "Failed to load report");
+  //     setData({
+  //       since: "",
+  //       reports: [],
+  //     });
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   useEffect(() => {
-    getReport();
-    // setData(reportsExample as unknown as ErrorReportResponse);
+    // getReport();
+    setData(reportsExample as unknown as ErrorReportResponse);
   }, []);
 
   const contextValue = {

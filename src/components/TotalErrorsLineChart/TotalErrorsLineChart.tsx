@@ -18,7 +18,8 @@ const colors = [
   "#33FFF5",
   "#A633FF",
 ];
-const getColor = (index: number) => colors[index % colors.length];
+
+const colorMap: Record<string, string> = {};
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
@@ -54,8 +55,11 @@ const TotalErrorsLineChart = () => {
 
   const chartData = data.reports.map((bucket) => {
     const codeCounts: { [key: string]: number } = {};
-    selectedCodes.forEach((code) => {
+    selectedCodes.forEach((code, index) => {
       codeCounts[code] = bucket.codes[code] ?? 0;
+      if (!colorMap[code]) {
+        colorMap[code] = colors[index % colors.length];
+      }
     });
 
     return {
@@ -71,6 +75,7 @@ const TotalErrorsLineChart = () => {
       height={"100%"}
       data={chartData}
       margin={{ bottom: 30, right: 30, top: 30 }}
+      responsive={true}
     >
       <CartesianGrid
         stroke="var(--border)"
@@ -86,23 +91,24 @@ const TotalErrorsLineChart = () => {
         textAnchor="end"
         dy={25}
       />
-      <YAxis />
+      <YAxis tickCount={12} />
       <Tooltip content={<CustomTooltip />} />
 
       <Line
         type="monotone"
         dataKey="total"
         stroke="var(--orange)"
-        strokeWidth={3}
+        strokeWidth={2}
       />
 
-      {selectedCodes.map((code, index) => (
+      {selectedCodes.map((code) => (
         <Line
           key={code}
           type="monotone"
           dataKey={code}
-          stroke={getColor(index)}
+          stroke={colorMap[code]}
           strokeWidth={3}
+          strokeDasharray="5 1"
         />
       ))}
     </LineChart>
