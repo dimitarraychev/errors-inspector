@@ -92,7 +92,7 @@ const TotalErrorsLineChart = () => {
       <Line
         type="monotone"
         dataKey="total"
-        stroke="var(--red)"
+        stroke="var(--orange)"
         strokeWidth={3}
       />
 
