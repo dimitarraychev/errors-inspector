@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { reportsExample } from "./reportsExample";
+// import { reportsExample } from "./reportsExample";
 import type { ReportsResponse } from "../types/ReportTypes";
 
 export const useReports = () => {
@@ -29,8 +29,8 @@ export const useReports = () => {
   };
 
   useEffect(() => {
-    // getReports();
-    setData(reportsExample);
+    getReports();
+    // setData(reportsExample);
   }, []);
 
   return {
