@@ -14,7 +14,8 @@ const ReportsViewer = () => {
       {sortedReports.map((report: ReportItem) => (
         <div className="report-item" key={report.code}>
           <h4>
-            {report.code} — Total: {report.total}
+            <span>{report.code}</span>
+            <span>{report.total}</span>
           </h4>
 
           <ul>
