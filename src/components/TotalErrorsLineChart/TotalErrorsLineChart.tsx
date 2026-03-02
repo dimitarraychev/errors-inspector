@@ -5,7 +5,6 @@ import {
   YAxis,
   Tooltip,
   CartesianGrid,
-  ResponsiveContainer,
 } from "recharts";
 import { useReportContext } from "../../context/ReportContext";
 import { formatDate, shortFormatDate } from "../../utils/date";
@@ -60,7 +59,7 @@ const TotalErrorsLineChart = () => {
       setChartWidth(width);
     };
 
-    handleResize(); // initial width
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
