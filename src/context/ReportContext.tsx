@@ -6,7 +6,7 @@ import {
   type ReactNode,
 } from "react";
 import type { ErrorReportResponse } from "../types/ReportTypes";
-// import { reportsExample } from "./reportsExample";
+import { reportsExample } from "./reportsExample";
 
 interface ReportContextType {
   data: ErrorReportResponse;
@@ -55,8 +55,8 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
   };
 
   useEffect(() => {
-    getReport();
-    // setData(reportsExample as unknown as ErrorReportResponse);
+    // getReport();
+    setData(reportsExample as unknown as ErrorReportResponse);
   }, []);
 
   const contextValue = {

@@ -5,10 +5,11 @@ import {
   YAxis,
   Tooltip,
   CartesianGrid,
+  ResponsiveContainer,
 } from "recharts";
 import { useReportContext } from "../../context/ReportContext";
 import { formatDate, shortFormatDate } from "../../utils/date";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const colors = [
   "#0A84FF",
@@ -49,6 +50,20 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 
 const TotalErrorsLineChart = () => {
   const { data, selectedCodes } = useReportContext();
+  const [chartWidth, setChartWidth] = useState<number>(0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const sidebarWidth = 21 * 16;
+      const gap = 16;
+      const width = window.innerWidth - sidebarWidth - gap;
+      setChartWidth(width);
+    };
+
+    handleResize(); // initial width
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const colorMap = useMemo(() => {
     const map: Record<string, string> = {};
@@ -76,7 +91,7 @@ const TotalErrorsLineChart = () => {
 
   return (
     <LineChart
-      width={"100%"}
+      width={chartWidth}
       height={"100%"}
       data={chartData}
       margin={{ bottom: 30, right: 30, top: 30 }}
