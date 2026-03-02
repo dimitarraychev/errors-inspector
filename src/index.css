@@ -5,7 +5,15 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
-  background-color: var(--deep-blue);
+  background: linear-gradient(
+    160deg,
+    var(--bg-main),
+    var(--bg-soft) 60%,
+    var(--bg-elevated)
+  );
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 *,
@@ -19,19 +27,25 @@ body {
 }
 
 :root {
-  --deep-blue: #00010f;
-  --dark: #0d1421;
-  --light: #222531;
-  --dark-gray: #8e8e93;
-  --light-gray: #aeaeb2;
-  --btn-color: #486dfb;
-  --separator-line: #3c3c3c;
   --green: #34c759;
   --red: #ff3b30;
   --orange: #ff9500;
   --yellow: #ffcc03;
-  --border: #5e5757;
-  --selected: #007bff;
+
+  --bg-main: #0a0c10;
+  --bg-soft: #0d1117;
+  --bg-elevated: #111318;
+  --sidebar-bg: rgba(18, 20, 26, 0.75);
+  --sidebar-border: rgba(255, 255, 255, 0.06);
+
+  --text-primary: rgba(255, 255, 255, 0.92);
+  --text-secondary: rgba(255, 255, 255, 0.55);
+
+  --hover-bg: rgba(255, 255, 255, 0.06);
+  --active-bg: rgba(10, 132, 255, 0.15);
+
+  --accent: #0a84ff;
+  --border-radius: 20px;
 }
 
 /* Typography */
@@ -70,30 +84,43 @@ h6 {
 }
 
 /* Scrollbar */
-::-webkit-scrollbar {
-  width: 0.6rem;
-  height: 0.6rem;
+/* Global scrollbar styling - Apple liquid glass theme */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0.05);
 }
 
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+*::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
 }
 
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.4);
-  border-radius: 10px;
+*::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
   transition:
     background 0.3s ease,
     transform 0.1s ease;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.6);
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.45);
   transform: scale(1.05);
 }
 
-::-webkit-scrollbar-thumb:active {
-  background: rgba(255, 255, 255, 0.8);
+*::-webkit-scrollbar-thumb:active {
+  background: rgba(255, 255, 255, 0.65);
   transform: scale(0.95);
+}
+
+html {
+  scroll-behavior: smooth;
 }
