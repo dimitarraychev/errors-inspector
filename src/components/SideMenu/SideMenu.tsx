@@ -2,7 +2,7 @@ import "./SideMenu.css";
 import logo from "../../assets/logo.svg";
 import menuLogo from "../../assets/menu.svg";
 import { useReportContext } from "../../context/ReportContext";
-import { formatDate } from "../../utils/date";
+import { formatDate, parsePeriodToHours } from "../../utils/date";
 
 interface SideMenuProps {
   isCollapsed: boolean;
@@ -10,7 +10,11 @@ interface SideMenuProps {
 }
 
 const SideMenu = ({ isCollapsed, onCollapseToggle }: SideMenuProps) => {
-  const { data, selectedCodes, setSelectedCodes } = useReportContext();
+  const { data, selectedCodes, setSelectedCodes, timePeriodStart } =
+    useReportContext();
+  const sinceDate = new Date(
+    Date.now() - parsePeriodToHours(timePeriodStart) * 60 * 60 * 1000,
+  );
 
   const codeTotals: { [code: string]: number } = {};
 
@@ -44,7 +48,7 @@ const SideMenu = ({ isCollapsed, onCollapseToggle }: SideMenuProps) => {
       </div>
 
       <p className={`since-text ${isCollapsed ? "collapsed-content" : ""}`}>
-        Since {formatDate(data.since)}
+        Since {formatDate(sinceDate.toISOString())}
       </p>
 
       <ul className={isCollapsed ? "collapsed-content" : ""}>

@@ -14,6 +14,7 @@ interface ReportContextType {
   loading: boolean;
   error: string | null;
   selectedCodes: string[];
+  timePeriodStart: string;
   setSelectedCodes: React.Dispatch<React.SetStateAction<string[]>>;
   setTimePeriodStart: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -71,6 +72,7 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
     error,
     selectedCodes,
     setSelectedCodes,
+    timePeriodStart,
     setTimePeriodStart,
   };
 
