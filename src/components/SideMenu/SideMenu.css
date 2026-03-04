@@ -88,7 +88,7 @@ img#logo.selector-logo {
   );
 }
 
-.side-menu .menu-header {
+.side-menu .report-code-nav-header {
   display: flex;
   justify-content: space-between;
   font-size: 0.75rem;
