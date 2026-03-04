@@ -19,3 +19,22 @@ export const shortFormatDate = (isoString: string) => {
 
   return `${hours}:${minutes}`;
 };
+
+export const parsePeriodToHours = (period: string): number => {
+  const value = parseInt(period);
+  const unit = period.slice(-1);
+
+  switch (unit) {
+    case "h":
+      return value;
+
+    case "d":
+      return value * 24;
+
+    case "m":
+      return value * 30 * 24; // simple 30-day month
+
+    default:
+      return 6;
+  }
+};

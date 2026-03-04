@@ -7,6 +7,7 @@ import {
 } from "react";
 import type { ErrorReportResponse } from "../types/ReportTypes";
 // import { reportsExample } from "./reportsExample";
+import { parsePeriodToHours } from "../utils/date";
 
 interface ReportContextType {
   data: ErrorReportResponse;
@@ -14,6 +15,7 @@ interface ReportContextType {
   error: string | null;
   selectedCodes: string[];
   setSelectedCodes: React.Dispatch<React.SetStateAction<string[]>>;
+  setTimePeriodStart: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface ReportContextProviderProps {
@@ -30,19 +32,23 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
   const [selectedCodes, setSelectedCodes] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [timePeriodStart, setTimePeriodStart] = useState("6h");
 
   const getReport = async () => {
     setLoading(true);
     setError(null);
 
     try {
-      const res = await fetch(`/api/report/`);
+      const hours = parsePeriodToHours(timePeriodStart);
 
-      if (!res.ok) throw new Error(`Failed to fetch reports: ${res.status}`);
+      const res = await fetch(`/api/report?hours=${hours}`);
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch reports: ${res.status}`);
+      }
 
       const data = await res.json();
       setData(data);
-      setError(null);
     } catch (error: any) {
       setError(error.message || "Failed to load report");
       setData({
@@ -57,7 +63,7 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
   useEffect(() => {
     getReport();
     // setData(reportsExample as unknown as ErrorReportResponse);
-  }, []);
+  }, [timePeriodStart]);
 
   const contextValue = {
     data,
@@ -65,6 +71,7 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
     error,
     selectedCodes,
     setSelectedCodes,
+    setTimePeriodStart,
   };
 
   return (

@@ -1,0 +1,31 @@
+.tab {
+  font-size: var(--label-font-size);
+  height: fit-content;
+  width: fit-content;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  padding: var(--element-padding);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3em;
+  transition: var(--transition);
+  box-shadow: var(--box-shadow);
+  background: var(--card-bg);
+  position: relative;
+  top: 2px;
+  z-index: 1;
+}
+
+.tab:hover {
+  filter: brightness(1.2);
+  transform: scale(1.02);
+}
+
+.tab:active {
+  transform: scale(1);
+}
+
+.tab-ghost {
+  background: transparent;
+}
