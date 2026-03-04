@@ -16,6 +16,27 @@
   transition: width 0.3s ease;
 }
 
+.clear-selection {
+  position: absolute;
+  top: 3.9rem;
+  right: 1rem;
+  font-size: var(--label-font-size);
+  color: var(--text-secondary);
+  align-self: flex-end;
+  border: var(--card-border);
+  box-shadow: var(--box-shadow);
+  width: fit-content;
+  padding: var(--element-padding);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+.clear-selection:hover {
+  filter: brightness(1.2);
+  transform: var(--transform);
+  transition: var(--transition);
+}
+
 .side-menu.collapsed {
   width: 6rem;
   height: 4rem;
@@ -54,7 +75,9 @@
 }
 
 .side-menu .since-text {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.6rem;
 }
 
 .collapse-toggle {
@@ -122,7 +145,7 @@ img#logo.selector-logo {
     inset 0 0 6px rgba(10, 132, 255, 0.15);
 }
 
-.side-menu ul li:not(.active):not(.menu-header):hover {
+.side-menu ul li:not(.active):not(.report-code-nav-header):hover {
   background: var(--hover-bg);
   color: var(--text-primary);
   cursor: pointer;

@@ -48,8 +48,14 @@ const SideMenu = ({ isCollapsed, onCollapseToggle }: SideMenuProps) => {
       </div>
 
       <p className={`since-text ${isCollapsed ? "collapsed-content" : ""}`}>
-        Since {formatDate(sinceDate.toISOString())}
+        <span>Since:</span> <span>{formatDate(sinceDate.toISOString())}</span>
       </p>
+
+      {selectedCodes.length > 0 && (
+        <p className="clear-selection" onClick={() => setSelectedCodes([])}>
+          Clear All ❌
+        </p>
+      )}
 
       <ul className={isCollapsed ? "collapsed-content" : ""}>
         <li className="report-code-nav-header">

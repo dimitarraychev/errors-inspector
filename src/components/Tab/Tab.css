@@ -15,11 +15,13 @@
   position: relative;
   top: 2px;
   z-index: 1;
+  color: var(--text-primary);
 }
 
 .tab:hover {
   filter: brightness(1.2);
-  transform: scale(1.02);
+  transform: var(--transform);
+  transition: var(--transition);
 }
 
 .tab:active {
@@ -28,4 +30,5 @@
 
 .tab-ghost {
   background: transparent;
+  color: var(--text-secondary);
 }
