@@ -1,9 +1,15 @@
 import "./SideMenu.css";
 import logo from "../../assets/logo.svg";
+import menuLogo from "../../assets/menu.svg";
 import { useReportContext } from "../../context/ReportContext";
 import { formatDate } from "../../utils/date";
 
-const SideMenu = () => {
+interface SideMenuProps {
+  isCollapsed: boolean;
+  onCollapseToggle: () => void;
+}
+
+const SideMenu = ({ isCollapsed, onCollapseToggle }: SideMenuProps) => {
   const { data, selectedCodes, setSelectedCodes } = useReportContext();
 
   const codeTotals: { [code: string]: number } = {};
@@ -25,15 +31,23 @@ const SideMenu = () => {
   };
 
   return (
-    <div className="side-menu">
+    <div className={`side-menu ${isCollapsed ? "collapsed" : ""}`}>
       <div className="logo-wrapper">
         <img src={logo} alt="Logo" className="logo" />
         <h1 className="logo-text">Errors Inspector</h1>
+        <img
+          src={menuLogo}
+          alt="Menu"
+          className="collapse-toggle"
+          onClick={onCollapseToggle}
+        />
       </div>
 
-      <p className="since-text">Since {formatDate(data.since)}</p>
+      <p className={`since-text ${isCollapsed ? "collapsed-content" : ""}`}>
+        Since {formatDate(data.since)}
+      </p>
 
-      <ul>
+      <ul className={isCollapsed ? "collapsed-content" : ""}>
         <li className="report-code-nav-header">
           <span>Code</span>
           <span>Total</span>
@@ -41,11 +55,9 @@ const SideMenu = () => {
 
         {sortedCodes.map((report) => (
           <li
-            className={
-              selectedCodes.includes(report.code)
-                ? `report-code-nav active`
-                : `report-code-nav`
-            }
+            className={`report-code-nav ${
+              selectedCodes.includes(report.code) ? "active" : ""
+            }`}
             key={report.code}
             onClick={() => toggleCode(report.code)}
           >

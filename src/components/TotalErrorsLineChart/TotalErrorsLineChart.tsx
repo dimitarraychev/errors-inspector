@@ -10,6 +10,10 @@ import { useReportContext } from "../../context/ReportContext";
 import { formatDate, shortFormatDate } from "../../utils/date";
 import { useEffect, useMemo, useState } from "react";
 
+interface TotalErrorsLineChartProps {
+  isSidebarCollapsed: boolean;
+}
+
 const colors = [
   "#0A84FF",
   "#30D158",
@@ -47,13 +51,15 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   return null;
 };
 
-const TotalErrorsLineChart = () => {
+const TotalErrorsLineChart = ({
+  isSidebarCollapsed,
+}: TotalErrorsLineChartProps) => {
   const { data, selectedCodes } = useReportContext();
   const [chartWidth, setChartWidth] = useState<number>(0);
 
   useEffect(() => {
     const handleResize = () => {
-      const sidebarWidth = 21 * 16;
+      const sidebarWidth = isSidebarCollapsed ? 6 * 16 : 21 * 16;
       const gap = 16;
       const width = window.innerWidth - sidebarWidth - gap;
       setChartWidth(width);
@@ -62,7 +68,7 @@ const TotalErrorsLineChart = () => {
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [isSidebarCollapsed]);
 
   const colorMap = useMemo(() => {
     const map: Record<string, string> = {};
