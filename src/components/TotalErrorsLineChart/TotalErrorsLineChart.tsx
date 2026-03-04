@@ -110,7 +110,7 @@ const TotalErrorsLineChart = ({
       />
       <XAxis
         dataKey="period"
-        interval={1}
+        interval="preserveStartEnd"
         angle={-90}
         textAnchor="end"
         dy={25}
