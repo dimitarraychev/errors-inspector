@@ -54,7 +54,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 const TotalErrorsLineChart = ({
   isSidebarCollapsed,
 }: TotalErrorsLineChartProps) => {
-  const { data, selectedCodes } = useReportContext();
+  const { data, selectedCodes, timePeriodStart } = useReportContext();
   const [chartWidth, setChartWidth] = useState<number>(0);
 
   useEffect(() => {
@@ -97,7 +97,7 @@ const TotalErrorsLineChart = ({
   return (
     <LineChart
       width={chartWidth}
-      height={"100%"}
+      height={"97%"}
       data={chartData}
       margin={{ bottom: 30, right: 30, top: 30 }}
       responsive={true}
@@ -114,7 +114,7 @@ const TotalErrorsLineChart = ({
         angle={-90}
         textAnchor="end"
         dy={25}
-        tickFormatter={(time) => shortFormatDate(time)}
+        tickFormatter={(time) => shortFormatDate(time, timePeriodStart)}
         axisLine={false}
         tick={{ fill: "var(--text-secondary)", fontSize: 12 }}
       />
