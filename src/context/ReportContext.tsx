@@ -62,8 +62,8 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
   };
 
   useEffect(() => {
+    // return setData(reportsExample as unknown as ErrorReportResponse);
     getReport();
-    // setData(reportsExample as unknown as ErrorReportResponse);
   }, [timePeriodStart]);
 
   const contextValue = {

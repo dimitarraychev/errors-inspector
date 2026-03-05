@@ -13,7 +13,6 @@
   overflow-y: auto;
   border-radius: var(--border-radius);
   border: var(--sidebar-border);
-  transition: width 0.3s ease;
 }
 
 .clear-selection {
@@ -46,9 +45,6 @@
 .side-menu .logo-text,
 .side-menu ul,
 .side-menu .since-text {
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
   opacity: 1;
   transform: translateX(0);
   pointer-events: auto;
@@ -119,7 +115,7 @@ img#logo.selector-logo {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-secondary);
-  border-bottom: 1px solid var(--sidebar-border);
+  border-bottom: var(--sidebar-border);
 }
 
 .side-menu ul li {
@@ -130,10 +126,6 @@ img#logo.selector-logo {
   margin: 0.2rem 0;
   border-radius: var(--border-radius);
   color: var(--text-primary);
-  transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    box-shadow 0.2s ease;
 }
 
 .side-menu ul li.active {
@@ -167,12 +159,11 @@ img#logo.selector-logo {
   font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: -0.3px;
-  transition:
-    opacity 0.1s ease,
-    transform 0.1s ease;
   opacity: 1;
   transform: translateX(0);
-  pointer-events: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 .side-menu .logo {
