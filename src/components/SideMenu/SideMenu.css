@@ -13,6 +13,7 @@
   overflow-y: auto;
   border-radius: var(--border-radius);
   border: var(--sidebar-border);
+  transition: width 0.3s ease;
 }
 
 .clear-selection {
@@ -40,11 +41,16 @@
   width: 6rem;
   height: 4rem;
   overflow: hidden;
+  min-width: 6rem;
+  max-width: 6rem;
 }
 
 .side-menu .logo-text,
 .side-menu ul,
 .side-menu .since-text {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
   opacity: 1;
   transform: translateX(0);
   pointer-events: auto;
@@ -54,9 +60,9 @@
 .side-menu.collapsed ul,
 .side-menu.collapsed .since-text {
   opacity: 0;
-  transform: translateX(-10px);
-  pointer-events: none;
+  transform: translateX(-20px);
   transition-delay: 0s;
+  pointer-events: none;
 }
 
 .side-menu:not(.collapsed) .logo-text,
@@ -74,6 +80,7 @@
   display: flex;
   flex-direction: column;
   padding-left: 0.6rem;
+  white-space: nowrap;
 }
 
 .collapse-toggle {
@@ -126,6 +133,10 @@ img#logo.selector-logo {
   margin: 0.2rem 0;
   border-radius: var(--border-radius);
   color: var(--text-primary);
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .side-menu ul li.active {
@@ -161,9 +172,11 @@ img#logo.selector-logo {
   letter-spacing: -0.3px;
   opacity: 1;
   transform: translateX(0);
+  pointer-events: auto;
   white-space: nowrap;
-  overflow: hidden;
-  pointer-events: none;
+  transition:
+    opacity 0.1s ease,
+    transform 0.1s ease;
 }
 
 .side-menu .logo {

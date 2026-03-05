@@ -6,8 +6,8 @@ import {
   type ReactNode,
 } from "react";
 import type { ErrorReportResponse } from "../types/ReportTypes";
-// import { reportsExample } from "./reportsExample";
 import { parsePeriodToHours } from "../utils/date";
+// import { reportsExample } from "./reportsExample";
 
 interface ReportContextType {
   data: ErrorReportResponse;
