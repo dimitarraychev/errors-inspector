@@ -28,7 +28,7 @@ function App() {
               setTimePeriodStart(tab);
             }}
           />
-          <TotalErrorsLineChart isSidebarCollapsed={isSidebarCollapsed} />
+          <TotalErrorsLineChart />
         </div>
       </div>
     </div>

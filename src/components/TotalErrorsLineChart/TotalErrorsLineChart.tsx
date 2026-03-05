@@ -8,11 +8,7 @@ import {
 } from "recharts";
 import { useReportContext } from "../../context/ReportContext";
 import { formatDate, shortFormatDate } from "../../utils/date";
-import { useEffect, useMemo, useState } from "react";
-
-interface TotalErrorsLineChartProps {
-  isSidebarCollapsed: boolean;
-}
+import { useMemo } from "react";
 
 const colors = [
   "#0A84FF",
@@ -51,24 +47,8 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   return null;
 };
 
-const TotalErrorsLineChart = ({
-  isSidebarCollapsed,
-}: TotalErrorsLineChartProps) => {
+const TotalErrorsLineChart = () => {
   const { data, selectedCodes, timePeriodStart } = useReportContext();
-  const [chartWidth, setChartWidth] = useState<number>(0);
-
-  useEffect(() => {
-    const handleResize = () => {
-      const sidebarWidth = isSidebarCollapsed ? 6 * 16 : 21 * 16;
-      const gap = 16;
-      const width = window.innerWidth - sidebarWidth - gap;
-      setChartWidth(width);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [isSidebarCollapsed]);
 
   const colorMap = useMemo(() => {
     const map: Record<string, string> = {};
@@ -96,7 +76,7 @@ const TotalErrorsLineChart = ({
 
   return (
     <LineChart
-      width={chartWidth}
+      width={"100%"}
       height={"97%"}
       data={chartData}
       margin={{ bottom: 30, right: 30, top: 30 }}

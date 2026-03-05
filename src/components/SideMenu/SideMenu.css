@@ -10,7 +10,6 @@
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   box-shadow: var(--box-shadow);
-  overflow-y: auto;
   border-radius: var(--border-radius);
   border: var(--sidebar-border);
   transition: width 0.3s ease;
@@ -41,8 +40,6 @@
   width: 6rem;
   height: 4rem;
   overflow: hidden;
-  min-width: 6rem;
-  max-width: 6rem;
 }
 
 .side-menu .logo-text,
@@ -60,9 +57,9 @@
 .side-menu.collapsed ul,
 .side-menu.collapsed .since-text {
   opacity: 0;
-  transform: translateX(-20px);
-  transition-delay: 0s;
+  transform: translateX(-10px);
   pointer-events: none;
+  transition-delay: 0s;
 }
 
 .side-menu:not(.collapsed) .logo-text,
@@ -118,7 +115,7 @@ img#logo.selector-logo {
   display: flex;
   justify-content: space-between;
   font-size: 0.75rem;
-  padding: 0.6rem 0.8rem;
+  padding: var(--element-padding);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-secondary);
@@ -170,13 +167,12 @@ img#logo.selector-logo {
   font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: -0.3px;
-  opacity: 1;
-  transform: translateX(0);
-  pointer-events: auto;
-  white-space: nowrap;
   transition:
     opacity 0.1s ease,
     transform 0.1s ease;
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
 }
 
 .side-menu .logo {

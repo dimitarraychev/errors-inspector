@@ -47,7 +47,7 @@ const SideMenu = ({ isCollapsed, onCollapseToggle }: SideMenuProps) => {
         />
       </div>
 
-      <p className={`since-text ${isCollapsed ? "collapsed-content" : ""}`}>
+      <p className="since-text">
         <span>Since:</span> <span>{formatDate(sinceDate.toISOString())}</span>
       </p>
 
@@ -57,7 +57,7 @@ const SideMenu = ({ isCollapsed, onCollapseToggle }: SideMenuProps) => {
         </p>
       )}
 
-      <ul className={isCollapsed ? "collapsed-content" : ""}>
+      <ul>
         <li className="report-code-nav-header">
           <span>Code</span>
           <span>Total</span>
