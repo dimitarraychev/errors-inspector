@@ -7,7 +7,7 @@ import {
 } from "react";
 import type { ErrorReportResponse } from "../types/ReportTypes";
 import { parsePeriodToHours } from "../utils/date";
-import { reportsExample } from "./reportsExample";
+// import { reportsExample } from "./reportsExample";
 
 interface ReportContextType {
   data: ErrorReportResponse;
@@ -62,7 +62,7 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
   };
 
   useEffect(() => {
-    return setData(reportsExample as unknown as ErrorReportResponse);
+    // return setData(reportsExample as unknown as ErrorReportResponse);
     getReport();
   }, [timePeriodStart]);
 
