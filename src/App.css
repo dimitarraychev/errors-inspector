@@ -13,5 +13,9 @@
 .chart-wrapper {
   display: flex;
   flex-direction: column;
+  width: calc(100% - 21rem);
+}
+
+.chart-wrapper.expanded {
   width: 100%;
 }

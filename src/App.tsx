@@ -19,7 +19,7 @@ function App() {
           isCollapsed={isSidebarCollapsed}
           onCollapseToggle={() => setIsSidebarCollapsed((prev) => !prev)}
         />
-        <div className="chart-wrapper">
+        <div className={isSidebarCollapsed ? "chart-wrapper expanded" : "chart-wrapper"}>
           <TabsMenu
             tabs={tabs}
             selectedTab={selectedTab}
