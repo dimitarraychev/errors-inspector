@@ -28,6 +28,8 @@ const ReportContext = createContext<ReportContextType | undefined>(undefined);
 const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
   const [data, setData] = useState<ErrorReportResponse>({
     since: "",
+    total: 0,
+    codes: {},
     reports: [],
   });
   const [selectedCodes, setSelectedCodes] = useState<string[]>([]);
@@ -54,6 +56,8 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
       setError(error.message || "Failed to load report");
       setData({
         since: "",
+        total: 0,
+        codes: {},
         reports: [],
       });
     } finally {

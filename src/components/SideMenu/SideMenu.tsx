@@ -16,13 +16,7 @@ const SideMenu = ({ isCollapsed, onCollapseToggle }: SideMenuProps) => {
     Date.now() - parsePeriodToHours(timePeriodStart) * 60 * 60 * 1000,
   );
 
-  const codeTotals: { [code: string]: number } = {};
-
-  data.reports.forEach((bucket) => {
-    Object.entries(bucket.codes).forEach(([code, count]) => {
-      codeTotals[code] = (codeTotals[code] || 0) + count;
-    });
-  });
+  const codeTotals = data.codes;
 
   const sortedCodes = Object.entries(codeTotals)
     .map(([code, total]) => ({ code, total }))

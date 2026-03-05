@@ -61,7 +61,7 @@ const TotalErrorsLineChart = () => {
   const chartData = data.reports.map((bucket) => {
     const codeCounts: { [key: string]: number } = {};
     selectedCodes.forEach((code, index) => {
-      codeCounts[code] = bucket.codes[code] ?? 0;
+      codeCounts[code] = bucket.codes[code]?.total ?? 0;
       if (!colorMap[code]) {
         colorMap[code] = colors[index % colors.length];
       }
