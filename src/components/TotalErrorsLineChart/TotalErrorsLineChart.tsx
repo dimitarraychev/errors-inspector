@@ -87,7 +87,6 @@ const TotalErrorsLineChart = () => {
         textAnchor="end"
         dy={25}
         tickFormatter={(time) => shortFormatDate(time, timePeriodStart)}
-        axisLine={false}
         tick={{ fill: "var(--text-secondary)", fontSize: 12 }}
       />
       <YAxis
