@@ -12,7 +12,20 @@ import { useMemo } from "react";
 import { getCodeColor } from "../../utils/codeColors";
 
 const CustomTooltip = ({ active, payload, label }: any) => {
+  const { selectedCodes, data } = useReportContext();
+
   if (active && payload && payload.length) {
+    const singleCode = selectedCodes.length === 1 ? selectedCodes[0] : null;
+
+    const report = data.reports.find(
+      (r: any) => new Date(r.period).getTime() === new Date(label).getTime(),
+    );
+
+    const endpoints =
+      singleCode && report?.codes[singleCode]?.endpoints
+        ? report.codes[singleCode].endpoints
+        : null;
+
     return (
       <div
         style={{
@@ -25,20 +38,33 @@ const CustomTooltip = ({ active, payload, label }: any) => {
         }}
       >
         <p>
-          <span style={{ color: "var(--text-secondary)" }}>Time: </span>
+          <span style={{ color: "var(--text-secondary)" }}>time: </span>
           {`${formatDate(label)}`}
         </p>
+
         {payload.map((p: any) => (
           <p key={p.dataKey} style={{ color: p.stroke }}>
             {`${p.dataKey}: ${p.value}`}
           </p>
         ))}
+
+        {endpoints && (
+          <div style={{ marginTop: "0.5rem" }}>
+            <p style={{ color: "var(--text-secondary)" }}>endpoints:</p>
+            {Object.entries(endpoints)
+              .sort(([, a], [, b]) => b - a)
+              .map(([ep, count]) => (
+                <p key={ep} style={{ marginLeft: "0.5rem", color: "white" }}>
+                  {ep}: {count}
+                </p>
+              ))}
+          </div>
+        )}
       </div>
     );
   }
   return null;
 };
-
 const TotalErrorsLineChart = () => {
   const { data, selectedCodes, timePeriodStart, showAll } = useReportContext();
 
