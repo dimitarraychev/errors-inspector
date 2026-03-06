@@ -14,9 +14,11 @@ interface ReportContextType {
   loading: boolean;
   error: string | null;
   selectedCodes: string[];
-  timePeriodStart: string;
   setSelectedCodes: React.Dispatch<React.SetStateAction<string[]>>;
+  timePeriodStart: string;
   setTimePeriodStart: React.Dispatch<React.SetStateAction<string>>;
+  showAll: boolean;
+  setShowAll: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface ReportContextProviderProps {
@@ -36,6 +38,7 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [timePeriodStart, setTimePeriodStart] = useState("6h");
+  const [showAll, setShowAll] = useState(true);
 
   const getReport = async () => {
     setLoading(true);
@@ -66,10 +69,6 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
   };
 
   useEffect(() => {
-    getReport();
-  }, [timePeriodStart]);
-
-  useEffect(() => {
     // return setData(reportsExample as unknown as ErrorReportResponse);
     getReport();
 
@@ -86,6 +85,8 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
     setSelectedCodes,
     timePeriodStart,
     setTimePeriodStart,
+    showAll,
+    setShowAll,
   };
 
   return (

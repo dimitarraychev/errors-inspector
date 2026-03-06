@@ -11,8 +11,14 @@ interface SideMenuProps {
 }
 
 const SideMenu = ({ isCollapsed, onCollapseToggle }: SideMenuProps) => {
-  const { data, selectedCodes, setSelectedCodes, timePeriodStart } =
-    useReportContext();
+  const {
+    data,
+    selectedCodes,
+    setSelectedCodes,
+    timePeriodStart,
+    showAll,
+    setShowAll,
+  } = useReportContext();
   const sinceDate = new Date(
     Date.now() - parsePeriodToHours(timePeriodStart) * 60 * 60 * 1000,
   );
@@ -58,13 +64,18 @@ const SideMenu = ({ isCollapsed, onCollapseToggle }: SideMenuProps) => {
           <span>Total</span>
         </li>
 
-        <li className="report-code-nav active">
-          <span
-            className="code-color"
-            style={{
-              backgroundColor: "var(--orange)",
-            }}
-          />
+        <li
+          className={`report-code-nav ${showAll ? "active" : ""}`}
+          onClick={() => setShowAll((prev) => !prev)}
+        >
+          {showAll && (
+            <span
+              className="code-color"
+              style={{
+                backgroundColor: "var(--orange)",
+              }}
+            />
+          )}
           <span>All</span>
           <span>{data.total}</span>
         </li>

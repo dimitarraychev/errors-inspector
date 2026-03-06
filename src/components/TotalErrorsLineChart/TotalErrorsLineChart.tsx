@@ -40,7 +40,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 };
 
 const TotalErrorsLineChart = () => {
-  const { data, selectedCodes, timePeriodStart } = useReportContext();
+  const { data, selectedCodes, timePeriodStart, showAll } = useReportContext();
 
   const codeColors = useMemo(() => {
     const map: Record<string, string> = {};
@@ -95,14 +95,16 @@ const TotalErrorsLineChart = () => {
       />
       <Tooltip content={<CustomTooltip />} />
 
-      <Line
-        type="monotone"
-        dataKey="total"
-        stroke="var(--orange)"
-        strokeWidth={2.5}
-        dot={false}
-        filter="url(#glow)"
-      />
+      {showAll && (
+        <Line
+          type="monotone"
+          dataKey="total"
+          stroke="var(--orange)"
+          strokeWidth={2.5}
+          dot={false}
+          filter="url(#glow)"
+        />
+      )}
 
       {selectedCodes.map((code) => (
         <Line
