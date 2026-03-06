@@ -7,64 +7,11 @@ import {
   CartesianGrid,
 } from "recharts";
 import { useReportContext } from "../../context/ReportContext";
-import { formatDate, shortFormatDate } from "../../utils/date";
+import { shortFormatDate } from "../../utils/date";
 import { useMemo } from "react";
 import { getCodeColor } from "../../utils/codeColors";
+import CustomTooltip from "./CustomTooltip";
 
-const CustomTooltip = ({ active, payload, label }: any) => {
-  const { selectedCodes, data } = useReportContext();
-
-  if (active && payload && payload.length) {
-    const singleCode = selectedCodes.length === 1 ? selectedCodes[0] : null;
-
-    const report = data.reports.find(
-      (r: any) => new Date(r.period).getTime() === new Date(label).getTime(),
-    );
-
-    const endpoints =
-      singleCode && report?.codes[singleCode]?.endpoints
-        ? report.codes[singleCode].endpoints
-        : null;
-
-    return (
-      <div
-        style={{
-          background: "rgba(20,20,20,0.6)",
-          backdropFilter: "blur(20px)",
-          border: "1px solid rgba(255,255,255,0.08)",
-          borderRadius: "16px",
-          padding: "1rem",
-          boxShadow: "0 10px 40px rgba(0,0,0,0.6)",
-        }}
-      >
-        <p>
-          <span style={{ color: "var(--text-secondary)" }}>time: </span>
-          {`${formatDate(label)}`}
-        </p>
-
-        {payload.map((p: any) => (
-          <p key={p.dataKey} style={{ color: p.stroke }}>
-            {`${p.dataKey}: ${p.value}`}
-          </p>
-        ))}
-
-        {endpoints && (
-          <div style={{ marginTop: "0.5rem" }}>
-            <p style={{ color: "var(--text-secondary)" }}>endpoints:</p>
-            {Object.entries(endpoints)
-              .sort(([, a], [, b]) => b - a)
-              .map(([ep, count]) => (
-                <p key={ep} style={{ marginLeft: "0.5rem", color: "white" }}>
-                  {ep}: {count}
-                </p>
-              ))}
-          </div>
-        )}
-      </div>
-    );
-  }
-  return null;
-};
 const TotalErrorsLineChart = () => {
   const { data, selectedCodes, timePeriodStart, showAll } = useReportContext();
 
