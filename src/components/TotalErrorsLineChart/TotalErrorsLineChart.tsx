@@ -9,15 +9,7 @@ import {
 import { useReportContext } from "../../context/ReportContext";
 import { formatDate, shortFormatDate } from "../../utils/date";
 import { useMemo } from "react";
-
-const colors = [
-  "#0A84FF",
-  "#30D158",
-  "#FF9F0A",
-  "#FF375F",
-  "#BF5AF2",
-  "#64D2FF",
-];
+import { getCodeColor } from "../../utils/codeColors";
 
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (active && payload && payload.length) {
@@ -50,29 +42,29 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 const TotalErrorsLineChart = () => {
   const { data, selectedCodes, timePeriodStart } = useReportContext();
 
-  const colorMap = useMemo(() => {
+  const codeColors = useMemo(() => {
     const map: Record<string, string> = {};
-    selectedCodes.forEach((code, index) => {
-      map[code] = colors[index % colors.length];
+    selectedCodes.forEach((code) => {
+      map[code] = getCodeColor(code);
     });
     return map;
   }, [selectedCodes]);
 
-  const chartData = data.reports.map((bucket) => {
-    const codeCounts: { [key: string]: number } = {};
-    selectedCodes.forEach((code, index) => {
-      codeCounts[code] = bucket.codes[code]?.total ?? 0;
-      if (!colorMap[code]) {
-        colorMap[code] = colors[index % colors.length];
-      }
-    });
+  const chartData = useMemo(() => {
+    return data.reports.map((bucket) => {
+      const codeCounts: Record<string, number> = {};
 
-    return {
-      period: new Date(bucket.period),
-      total: bucket.total,
-      ...codeCounts,
-    };
-  });
+      selectedCodes.forEach((code) => {
+        codeCounts[code] = bucket.codes[code]?.total ?? 0;
+      });
+
+      return {
+        period: new Date(bucket.period),
+        total: bucket.total,
+        ...codeCounts,
+      };
+    });
+  }, [data.reports, selectedCodes]);
 
   return (
     <LineChart
@@ -118,7 +110,7 @@ const TotalErrorsLineChart = () => {
           key={code}
           type="monotone"
           dataKey={code}
-          stroke={colorMap[code]}
+          stroke={codeColors[code]}
           strokeWidth={2.5}
           dot={false}
           filter="url(#glow)"

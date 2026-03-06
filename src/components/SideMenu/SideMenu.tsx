@@ -3,6 +3,7 @@ import logo from "../../assets/logo.svg";
 import menuLogo from "../../assets/menu.svg";
 import { useReportContext } from "../../context/ReportContext";
 import { formatDate, parsePeriodToHours } from "../../utils/date";
+import { getCodeColor } from "../../utils/codeColors";
 
 interface SideMenuProps {
   isCollapsed: boolean;
@@ -57,6 +58,17 @@ const SideMenu = ({ isCollapsed, onCollapseToggle }: SideMenuProps) => {
           <span>Total</span>
         </li>
 
+        <li className="report-code-nav active">
+          <span
+            className="code-color"
+            style={{
+              backgroundColor: "var(--orange)",
+            }}
+          />
+          <span>All</span>
+          <span>{data.total}</span>
+        </li>
+
         {sortedCodes.map((report) => (
           <li
             className={`report-code-nav ${
@@ -65,7 +77,16 @@ const SideMenu = ({ isCollapsed, onCollapseToggle }: SideMenuProps) => {
             key={report.code}
             onClick={() => toggleCode(report.code)}
           >
+            {selectedCodes.includes(report.code) && (
+              <span
+                className="code-color"
+                style={{
+                  backgroundColor: getCodeColor(report.code),
+                }}
+              />
+            )}
             <span>{report.code}</span>
+
             <span>{report.total}</span>
           </li>
         ))}

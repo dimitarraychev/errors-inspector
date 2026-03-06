@@ -179,3 +179,12 @@ img#logo.selector-logo {
 .side-menu .logo {
   height: 2rem;
 }
+
+.code-color {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: var(--border-radius);
+  position: absolute;
+  right: 4rem;
+}
