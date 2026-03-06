@@ -66,8 +66,16 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
   };
 
   useEffect(() => {
+    getReport();
+  }, [timePeriodStart]);
+
+  useEffect(() => {
     // return setData(reportsExample as unknown as ErrorReportResponse);
     getReport();
+
+    const interval = setInterval(getReport, 5 * 60 * 1000);
+
+    return () => clearInterval(interval);
   }, [timePeriodStart]);
 
   const contextValue = {
