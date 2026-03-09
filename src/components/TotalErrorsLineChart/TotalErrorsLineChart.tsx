@@ -11,9 +11,11 @@ import { shortFormatDate } from "../../utils/date";
 import { useMemo } from "react";
 import { getCodeColor } from "../../utils/codeColors";
 import CustomTooltip from "./CustomTooltip";
+import { useHoverClickTooltip } from "../../hooks/useHoverClickTooltip";
 
 const TotalErrorsLineChart = () => {
   const { data, selectedCodes, timePeriodStart, showAll } = useReportContext();
+  const { tooltipTrigger, handleChartClick } = useHoverClickTooltip();
 
   const codeColors = useMemo(() => {
     const map: Record<string, string> = {};
@@ -46,6 +48,7 @@ const TotalErrorsLineChart = () => {
       data={chartData}
       margin={{ bottom: 30, right: 30, top: 30 }}
       responsive={true}
+      onClick={handleChartClick}
     >
       <CartesianGrid
         stroke="rgba(255,255,255,0.2)"
@@ -66,7 +69,7 @@ const TotalErrorsLineChart = () => {
         tickCount={12}
         tick={{ fill: "var(--text-secondary)", fontSize: 12 }}
       />
-      <Tooltip content={<CustomTooltip />} />
+      <Tooltip content={<CustomTooltip />} trigger={tooltipTrigger} />
 
       {showAll && (
         <Line

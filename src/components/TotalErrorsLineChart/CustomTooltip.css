@@ -20,12 +20,13 @@
 }
 
 .custom-tooltip .endpoints-list {
-  max-height: 40vh;
+  max-height: 10rem;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   margin-top: 0.2rem;
   column-gap: 1rem;
+  overflow-y: auto;
+  pointer-events: auto;
 }
 
 .custom-tooltip .endpoint-name {
@@ -35,4 +36,13 @@
 .custom-tooltip .endpoint-count {
   color: var(--text-primary);
   margin-left: 0.25rem;
+}
+
+.recharts-wrapper:focus,
+.recharts-wrapper:focus-visible {
+  outline: none;
+}
+
+.recharts-surface:focus {
+  outline: none;
 }
