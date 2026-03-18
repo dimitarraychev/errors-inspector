@@ -7,7 +7,7 @@ import {
 } from "react";
 import type { ErrorReportResponse } from "../types/ReportTypes";
 import { parsePeriodToHours } from "../utils/date";
-import { reportsExample } from "./reportsExample";
+// import { reportsExample } from "./reportsExample";
 
 interface ReportContextType {
   data: ErrorReportResponse;
@@ -17,6 +17,8 @@ interface ReportContextType {
   setSelectedCodes: React.Dispatch<React.SetStateAction<string[]>>;
   timePeriodStart: string;
   setTimePeriodStart: React.Dispatch<React.SetStateAction<string>>;
+  timePeriodEnd: string;
+  setTimePeriodEnd: React.Dispatch<React.SetStateAction<string>>;
   showAll: boolean;
   setShowAll: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -38,6 +40,7 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [timePeriodStart, setTimePeriodStart] = useState("6h");
+  const [timePeriodEnd, setTimePeriodEnd] = useState("");
   const [showAll, setShowAll] = useState(true);
 
   const getReport = async () => {
@@ -45,9 +48,19 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
     setError(null);
 
     try {
-      const hours = parsePeriodToHours(timePeriodStart);
+      const params = new URLSearchParams();
 
-      const res = await fetch(`/api/report?hours=${hours}`);
+      if (timePeriodStart) params.append("start", timePeriodStart);
+      if (timePeriodEnd) params.append("end", timePeriodEnd);
+
+      // Fallback: if only timePeriodStart is a relative value (like "6h"), convert to start ISO
+      if (!timePeriodEnd && timePeriodStart.includes("h")) {
+        const hours = parsePeriodToHours(timePeriodStart);
+        const startDate = new Date(Date.now() - hours * 60 * 60 * 1000);
+        params.set("start", startDate.toISOString());
+      }
+
+      const res = await fetch(`/api/report?${params.toString()}`);
 
       if (!res.ok) {
         throw new Error(`Failed to fetch reports: ${res.status}`);
@@ -69,13 +82,13 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
   };
 
   useEffect(() => {
-    return setData(reportsExample as unknown as ErrorReportResponse);
+    // return setData(reportsExample as unknown as ErrorReportResponse);
     getReport();
 
     const interval = setInterval(getReport, 5 * 60 * 1000);
 
     return () => clearInterval(interval);
-  }, [timePeriodStart]);
+  }, [timePeriodStart, timePeriodEnd]);
 
   const contextValue = {
     data,
@@ -85,6 +98,8 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
     setSelectedCodes,
     timePeriodStart,
     setTimePeriodStart,
+    timePeriodEnd,
+    setTimePeriodEnd,
     showAll,
     setShowAll,
   };

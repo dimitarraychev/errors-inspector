@@ -11,7 +11,7 @@ function App() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const tabs = ["1h", "2h", "3h", "6h", "12h", "1d", "7d", "14d", "1m"];
   const { selectedTab, changeSelectedTab } = useTabs();
-  const { setTimePeriodStart, loading } = useReportContext();
+  const { loading } = useReportContext();
 
   return (
     <div className="app">
@@ -33,10 +33,7 @@ function App() {
           <TabsMenu
             tabs={tabs}
             selectedTab={selectedTab}
-            onChange={(tab) => {
-              changeSelectedTab(tab);
-              setTimePeriodStart(tab);
-            }}
+            changeSelectedTab={changeSelectedTab}
           />
           <TotalErrorsLineChart />
         </div>
