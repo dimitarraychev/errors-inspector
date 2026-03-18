@@ -1,5 +1,7 @@
 import Tab from "../Tab/Tab";
 import "./TabsMenu.css";
+import prevArrow from "../../assets/prev-arrow.svg";
+import nextArrow from "../../assets/next-arrow.svg";
 
 interface TabsMenuProps {
   tabs: string[];
@@ -14,6 +16,10 @@ const TabsMenu = ({ tabs, selectedTab, onChange }: TabsMenuProps) => {
 
   return (
     <div className="tabs-menu">
+      <div className="arrow-wrapper">
+        <img src={prevArrow} alt="previous" className="arrow prev-arrow" />
+      </div>
+
       {tabs.map((tab) => (
         <Tab
           key={tab}
@@ -23,6 +29,9 @@ const TabsMenu = ({ tabs, selectedTab, onChange }: TabsMenuProps) => {
           onClick={() => handleTabChange(tab)}
         />
       ))}
+      <div className="arrow-wrapper">
+        <img src={nextArrow} alt="next" className="arrow next-arrow" />
+      </div>
     </div>
   );
 };

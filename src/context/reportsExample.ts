@@ -1,5 +1,6 @@
 export const reportsExample = {
-  since: "2026-03-05T07:12:29.093Z",
+  start: "2026-03-05T07:12:29.093Z",
+  end: "2026-03-05T13:12:29.093Z",
   total: 7020,
   codes: {
     "RF/GPH120": 59,
