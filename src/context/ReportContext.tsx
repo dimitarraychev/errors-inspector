@@ -19,8 +19,6 @@ interface ReportContextType {
   setTimePeriodStart: React.Dispatch<React.SetStateAction<string>>;
   timePeriodEnd: string;
   setTimePeriodEnd: React.Dispatch<React.SetStateAction<string>>;
-  showAll: boolean;
-  setShowAll: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface ReportContextProviderProps {
@@ -40,7 +38,6 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
   const [selectedCodes, setSelectedCodes] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [showAll, setShowAll] = useState(true);
 
   const defaultRange = getDefaultRange("6h");
 
@@ -104,8 +101,6 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
     setTimePeriodStart,
     timePeriodEnd,
     setTimePeriodEnd,
-    showAll,
-    setShowAll,
   };
 
   return (

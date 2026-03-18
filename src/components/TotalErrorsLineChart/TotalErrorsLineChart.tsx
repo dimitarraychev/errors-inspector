@@ -14,7 +14,7 @@ import CustomTooltip from "./CustomTooltip";
 import { useHoverClickTooltip } from "../../hooks/useHoverClickTooltip";
 
 const TotalErrorsLineChart = () => {
-  const { data, selectedCodes, showAll } = useReportContext();
+  const { data, selectedCodes } = useReportContext();
   const { tooltipTrigger, handleChartClick } = useHoverClickTooltip();
 
   const codeColors = useMemo(() => {
@@ -71,7 +71,6 @@ const TotalErrorsLineChart = () => {
       />
       <Tooltip content={<CustomTooltip />} trigger={tooltipTrigger} />
 
-      {showAll && (
         <Line
           type="monotone"
           dataKey="total"
@@ -80,7 +79,6 @@ const TotalErrorsLineChart = () => {
           dot={false}
           filter="url(#glow)"
         />
-      )}
 
       {selectedCodes.map((code) => (
         <Line

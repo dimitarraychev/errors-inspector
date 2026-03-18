@@ -3,7 +3,7 @@ import "./TabsMenu.css";
 import prevArrow from "../../assets/prev-arrow.svg";
 import nextArrow from "../../assets/next-arrow.svg";
 import { useReportContext } from "../../context/ReportContext";
-import { parsePeriodToHours } from "../../utils/date";
+import { formatDate, parsePeriodToHours } from "../../utils/date";
 
 interface TabsMenuProps {
   tabs: string[];
@@ -109,6 +109,18 @@ const TabsMenu = ({ tabs, selectedTab, changeSelectedTab }: TabsMenuProps) => {
           className={`arrow next-arrow ${disableNext() ? "disabled" : ""}`}
           onClick={disableNext() ? undefined : handleNext}
         />
+      </div>
+
+      
+      <div className="times-wrapper">
+        <p>
+          <span className="time-label">From:</span>{" "}
+          <span>{formatDate(timePeriodEnd)}</span>
+        </p>
+        <p>
+          <span className="time-label">To:</span>{" "}
+          <span>{formatDate(timePeriodStart)}</span>
+        </p>
       </div>
     </div>
   );

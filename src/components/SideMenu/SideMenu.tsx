@@ -3,7 +3,7 @@ import logo from "../../assets/logo.svg";
 import menuLogo from "../../assets/menu.svg";
 import { useReportContext } from "../../context/ReportContext";
 import { getCodeColor } from "../../utils/codeColors";
-import { formatDate } from "../../utils/date";
+// import { formatDate } from "../../utils/date";
 
 interface SideMenuProps {
   isCollapsed: boolean;
@@ -15,10 +15,8 @@ const SideMenu = ({ isCollapsed, onCollapseToggle }: SideMenuProps) => {
     data,
     selectedCodes,
     setSelectedCodes,
-    timePeriodStart,
-    timePeriodEnd,
-    showAll,
-    setShowAll,
+    // timePeriodStart,
+    // timePeriodEnd,
   } = useReportContext();
 
   const codeTotals = data.codes;
@@ -46,19 +44,6 @@ const SideMenu = ({ isCollapsed, onCollapseToggle }: SideMenuProps) => {
         />
       </div>
 
-      <p className="times-wrapper">
-        <span className="time-label">From:</span>{" "}
-        <span>{formatDate(timePeriodEnd)}</span>
-        <span className="time-label">To:</span>{" "}
-        <span>{formatDate(timePeriodStart)}</span>
-      </p>
-
-      {selectedCodes.length > 0 && (
-        <p className="clear-selection" onClick={() => setSelectedCodes([])}>
-          Clear All ❌
-        </p>
-      )}
-
       <ul>
         <li className="report-code-nav-header">
           <span>Code</span>
@@ -66,17 +51,16 @@ const SideMenu = ({ isCollapsed, onCollapseToggle }: SideMenuProps) => {
         </li>
 
         <li
-          className={`report-code-nav ${showAll ? "active" : ""}`}
-          onClick={() => setShowAll((prev) => !prev)}
+          className="report-code-nav active"
+          onClick={() => setSelectedCodes([])}
         >
-          {showAll && (
-            <span
-              className="code-color"
-              style={{
-                backgroundColor: "var(--orange)",
-              }}
-            />
-          )}
+          <span
+            className="code-color"
+            style={{
+              backgroundColor: "var(--orange)",
+            }}
+          />
+
           <span>All</span>
           <span>{data.total}</span>
         </li>

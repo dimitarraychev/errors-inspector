@@ -32,3 +32,17 @@
 .arrow-wrapper:active {
   transform: scale(1);
 }
+
+.tabs-menu .times-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.tabs-menu .time-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}

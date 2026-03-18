@@ -15,27 +15,6 @@
   transition: width 0.3s ease;
 }
 
-.clear-selection {
-  position: absolute;
-  top: 5rem;
-  right: 2rem;
-  font-size: var(--label-font-size);
-  color: var(--text-secondary);
-  align-self: flex-end;
-  border: var(--card-border);
-  box-shadow: var(--box-shadow);
-  width: fit-content;
-  padding: var(--element-padding);
-  border-radius: var(--border-radius);
-  cursor: pointer;
-}
-
-.clear-selection:hover {
-  filter: brightness(1.2);
-  transform: var(--transform);
-  transition: var(--transition);
-}
-
 .side-menu.collapsed {
   width: 6rem;
   height: 4rem;
@@ -66,18 +45,6 @@
 .side-menu:not(.collapsed) ul,
 .side-menu:not(.collapsed) .since-text {
   transition-delay: 0.1s;
-}
-
-.side-menu .times-wrapper {
-  display: flex;
-  flex-direction: column;
-  padding-left: 0.6rem;
-  white-space: nowrap;
-}
-
-.time-label {
-  font-size: 0.75rem;
-  color: var(--text-secondary);
 }
 
 .collapse-toggle {
