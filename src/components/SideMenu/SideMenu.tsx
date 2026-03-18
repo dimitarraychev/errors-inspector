@@ -2,8 +2,8 @@ import "./SideMenu.css";
 import logo from "../../assets/logo.svg";
 import menuLogo from "../../assets/menu.svg";
 import { useReportContext } from "../../context/ReportContext";
-import { formatDate, parsePeriodToHours } from "../../utils/date";
 import { getCodeColor } from "../../utils/codeColors";
+import { formatDate } from "../../utils/date";
 
 interface SideMenuProps {
   isCollapsed: boolean;
@@ -16,12 +16,10 @@ const SideMenu = ({ isCollapsed, onCollapseToggle }: SideMenuProps) => {
     selectedCodes,
     setSelectedCodes,
     timePeriodStart,
+    timePeriodEnd,
     showAll,
     setShowAll,
   } = useReportContext();
-  const sinceDate = new Date(
-    Date.now() - parsePeriodToHours(timePeriodStart) * 60 * 60 * 1000,
-  );
 
   const codeTotals = data.codes;
 
@@ -49,7 +47,8 @@ const SideMenu = ({ isCollapsed, onCollapseToggle }: SideMenuProps) => {
       </div>
 
       <p className="since-text">
-        <span>Since:</span> <span>{formatDate(sinceDate.toISOString())}</span>
+        <span>End:</span> <span>{formatDate(timePeriodEnd)}</span>
+        <span>Start:</span> <span>{formatDate(timePeriodStart)}</span>
       </p>
 
       {selectedCodes.length > 0 && (

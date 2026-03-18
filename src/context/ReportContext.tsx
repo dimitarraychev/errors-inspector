@@ -6,7 +6,7 @@ import {
   type ReactNode,
 } from "react";
 import type { ErrorReportResponse } from "../types/ReportTypes";
-import { parsePeriodToHours } from "../utils/date";
+import { getDefaultRange, parsePeriodToHours } from "../utils/date";
 // import { reportsExample } from "./reportsExample";
 
 interface ReportContextType {
@@ -31,7 +31,8 @@ const ReportContext = createContext<ReportContextType | undefined>(undefined);
 
 const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
   const [data, setData] = useState<ErrorReportResponse>({
-    since: "",
+    start: "",
+    end: "",
     total: 0,
     codes: {},
     reports: [],
@@ -39,9 +40,12 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
   const [selectedCodes, setSelectedCodes] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [timePeriodStart, setTimePeriodStart] = useState("6h");
-  const [timePeriodEnd, setTimePeriodEnd] = useState("");
   const [showAll, setShowAll] = useState(true);
+
+  const defaultRange = getDefaultRange("6h");
+
+  const [timePeriodStart, setTimePeriodStart] = useState(defaultRange.start);
+  const [timePeriodEnd, setTimePeriodEnd] = useState(defaultRange.end);
 
   const getReport = async () => {
     setLoading(true);
@@ -53,7 +57,6 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
       if (timePeriodStart) params.append("start", timePeriodStart);
       if (timePeriodEnd) params.append("end", timePeriodEnd);
 
-      // Fallback: if only timePeriodStart is a relative value (like "6h"), convert to start ISO
       if (!timePeriodEnd && timePeriodStart.includes("h")) {
         const hours = parsePeriodToHours(timePeriodStart);
         const startDate = new Date(Date.now() - hours * 60 * 60 * 1000);
@@ -71,7 +74,8 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
     } catch (error: any) {
       setError(error.message || "Failed to load report");
       setData({
-        since: "",
+        start: "",
+        end: "",
         total: 0,
         codes: {},
         reports: [],

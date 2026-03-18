@@ -1,4 +1,3 @@
-
 export interface EndpointCounts {
   [endpoint: string]: number;
 }
@@ -9,14 +8,15 @@ export interface CodeDetail {
 }
 
 export interface ReportBucket {
-  period: string;              
-  total: number;              
+  period: string;
+  total: number;
   codes: { [code: string]: CodeDetail };
 }
 
 export interface ErrorReportResponse {
-  since: string;            
-  total: number;            
-  codes: { [code: string]: number }; 
+  start: string;
+  end: string;
+  total: number;
+  codes: { [code: string]: number };
   reports: ReportBucket[];
 }

@@ -36,9 +36,20 @@ export const parsePeriodToHours = (period: string): number => {
       return value * 24;
 
     case "m":
-      return value * 30 * 24; // simple 30-day month
+      return value * 30 * 24;
 
     default:
       return 6;
   }
+};
+
+export const getDefaultRange = (period: string) => {
+  const now = new Date();
+  const hours = parsePeriodToHours(period);
+  const start = new Date(now.getTime() - hours * 60 * 60 * 1000);
+
+  return {
+    start: start.toISOString(),
+    end: now.toISOString(),
+  };
 };
