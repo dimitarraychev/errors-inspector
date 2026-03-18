@@ -12,29 +12,22 @@ export const formatDate = (isoString: string) => {
 
 export const shortFormatDate = (
   isoString: string,
-  start: string,
-  end: string,
+  // start?: string,
+  // end: string,
 ) => {
   const d = new Date(isoString);
-  const startDate = new Date(start);
-  const endDate = new Date(end);
 
-  const diffMs = endDate.getTime() - startDate.getTime();
-  const diffHours = diffMs / (1000 * 60 * 60);
+  // const startDate = new Date(start);
+  // const endDate = new Date(end);
+  // const diffMs = endDate.getTime() - startDate.getTime();
+  // const diffHours = diffMs / (1000 * 60 * 60);
 
   const day = String(d.getDate()).padStart(2, "0");
   const month = String(d.getMonth() + 1).padStart(2, "0");
   const hours = String(d.getHours()).padStart(2, "0");
   const minutes = String(d.getMinutes()).padStart(2, "0");
 
-  const isMidnight = hours === "00" && minutes === "00";
-
-  if (diffHours <= 24 * 7) {
-    if (isMidnight) return `${day}.${month}\n${hours}:${minutes}`;
-    return `${hours}:${minutes}`;
-  }
-
-  return `${day}.${month}`;
+  return `${day}.${month} ${hours}:${minutes}`;
 };
 
 export const parsePeriodToHours = (period: string): number => {

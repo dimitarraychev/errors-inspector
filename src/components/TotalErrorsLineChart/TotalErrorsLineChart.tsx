@@ -14,7 +14,7 @@ import CustomTooltip from "./CustomTooltip";
 import { useHoverClickTooltip } from "../../hooks/useHoverClickTooltip";
 
 const TotalErrorsLineChart = () => {
-  const { data, selectedCodes, timePeriodStart, timePeriodEnd, showAll } = useReportContext();
+  const { data, selectedCodes, showAll } = useReportContext();
   const { tooltipTrigger, handleChartClick } = useHoverClickTooltip();
 
   const codeColors = useMemo(() => {
@@ -44,9 +44,9 @@ const TotalErrorsLineChart = () => {
   return (
     <LineChart
       width={"100%"}
-      height={"97%"}
+      height={"100%"}
       data={chartData}
-      margin={{ bottom: 30, right: 30, top: 30 }}
+      margin={{ bottom: 80, right: 30, top: 30 }}
       responsive={true}
       onClick={handleChartClick}
     >
@@ -61,8 +61,8 @@ const TotalErrorsLineChart = () => {
         interval="preserveStartEnd"
         angle={-90}
         textAnchor="end"
-        dy={25}
-        tickFormatter={(time) => shortFormatDate(time, timePeriodStart, timePeriodEnd)}
+        dy={45}
+        tickFormatter={(time) => shortFormatDate(time)}
         tick={{ fill: "var(--text-secondary)", fontSize: 12 }}
       />
       <YAxis
