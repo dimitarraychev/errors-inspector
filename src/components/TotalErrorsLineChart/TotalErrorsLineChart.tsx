@@ -61,7 +61,8 @@ const TotalErrorsLineChart = () => {
         interval="preserveStartEnd"
         angle={-90}
         textAnchor="end"
-        dy={45}
+        dy={46}
+        dx={-5}
         tickFormatter={(time) => shortFormatDate(time)}
         tick={{ fill: "var(--text-secondary)", fontSize: 12 }}
       />
@@ -71,14 +72,14 @@ const TotalErrorsLineChart = () => {
       />
       <Tooltip content={<CustomTooltip />} trigger={tooltipTrigger} />
 
-        <Line
-          type="monotone"
-          dataKey="total"
-          stroke="var(--orange)"
-          strokeWidth={2.5}
-          dot={false}
-          filter="url(#glow)"
-        />
+      <Line
+        type="monotone"
+        dataKey="total"
+        stroke="var(--orange)"
+        strokeWidth={2.5}
+        dot={false}
+        filter="url(#glow)"
+      />
 
       {selectedCodes.map((code) => (
         <Line
