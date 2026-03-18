@@ -27,12 +27,11 @@ export const shortFormatDate = (
   const hours = String(d.getHours()).padStart(2, "0");
   const minutes = String(d.getMinutes()).padStart(2, "0");
 
-  if (diffHours <= 24) {
-    return `${hours}:${minutes}`;
-  }
+  const isMidnight = hours === "00" && minutes === "00";
 
   if (diffHours <= 24 * 7) {
-    return `${day}.${month} ${hours}:${minutes}`;
+    if (isMidnight) return `${day}.${month}\n${hours}:${minutes}`;
+    return `${hours}:${minutes}`;
   }
 
   return `${day}.${month}`;
