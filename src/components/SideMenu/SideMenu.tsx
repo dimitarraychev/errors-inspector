@@ -46,9 +46,11 @@ const SideMenu = ({ isCollapsed, onCollapseToggle }: SideMenuProps) => {
         />
       </div>
 
-      <p className="since-text">
-        <span>End:</span> <span>{formatDate(timePeriodEnd)}</span>
-        <span>Start:</span> <span>{formatDate(timePeriodStart)}</span>
+      <p className="times-wrapper">
+        <span className="time-label">From:</span>{" "}
+        <span>{formatDate(timePeriodEnd)}</span>
+        <span className="time-label">To:</span>{" "}
+        <span>{formatDate(timePeriodStart)}</span>
       </p>
 
       {selectedCodes.length > 0 && (

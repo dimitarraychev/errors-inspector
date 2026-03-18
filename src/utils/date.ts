@@ -1,7 +1,7 @@
 export const formatDate = (isoString: string) => {
   const d = new Date(isoString);
 
-  const year = d.getFullYear();
+  const year = String(d.getFullYear()).slice(-2);
   const month = String(d.getMonth() + 1).padStart(2, "0");
   const day = String(d.getDate()).padStart(2, "0");
   const hours = String(d.getHours()).padStart(2, "0");
@@ -10,18 +10,32 @@ export const formatDate = (isoString: string) => {
   return `${hours}:${minutes} ${day}.${month}.${year}`;
 };
 
-export const shortFormatDate = (isoString: string, period: string) => {
+export const shortFormatDate = (
+  isoString: string,
+  start: string,
+  end: string,
+) => {
   const d = new Date(isoString);
+  const startDate = new Date(start);
+  const endDate = new Date(end);
+
+  const diffMs = endDate.getTime() - startDate.getTime();
+  const diffHours = diffMs / (1000 * 60 * 60);
+
   const day = String(d.getDate()).padStart(2, "0");
   const month = String(d.getMonth() + 1).padStart(2, "0");
   const hours = String(d.getHours()).padStart(2, "0");
   const minutes = String(d.getMinutes()).padStart(2, "0");
 
-  if (["1h", "2h", "3h", "6h", "12h", "1d"].includes(period)) {
+  if (diffHours <= 24) {
     return `${hours}:${minutes}`;
-  } else {
-    return `${day}.${month}`;
   }
+
+  if (diffHours <= 24 * 7) {
+    return `${day}.${month} ${hours}:${minutes}`;
+  }
+
+  return `${day}.${month}`;
 };
 
 export const parsePeriodToHours = (period: string): number => {

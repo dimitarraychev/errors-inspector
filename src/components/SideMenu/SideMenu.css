@@ -68,16 +68,16 @@
   transition-delay: 0.1s;
 }
 
-.side-menu .since-text,
-.side-menu .report-code-nav-header {
-  color: var(--text-secondary);
-}
-
-.side-menu .since-text {
+.side-menu .times-wrapper {
   display: flex;
   flex-direction: column;
   padding-left: 0.6rem;
   white-space: nowrap;
+}
+
+.time-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
 }
 
 .collapse-toggle {
