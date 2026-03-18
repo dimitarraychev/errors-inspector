@@ -21,7 +21,7 @@
   user-select: none;
 }
 
-.arrow-wrapper:hover {
+.arrow-wrapper:not(.disabled):hover {
   background: var(--hover-bg);
   color: var(--text-primary);
   transform: var(--transform);
@@ -45,4 +45,11 @@
 .tabs-menu .time-label {
   font-size: 0.75rem;
   color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.tabs-menu .arrow-wrapper.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }

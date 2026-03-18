@@ -77,8 +77,11 @@ const TabsMenu = ({ tabs, selectedTab, changeSelectedTab }: TabsMenuProps) => {
   };
 
   const disableNext = () => {
+    const duration = getTabDurationMs(selectedTab);
     const end = new Date(timePeriodEnd);
-    return end >= new Date();
+    const now = new Date();
+
+    return end.getTime() + duration >= now.getTime();
   };
 
   return (
@@ -102,11 +105,11 @@ const TabsMenu = ({ tabs, selectedTab, changeSelectedTab }: TabsMenuProps) => {
         />
       ))}
 
-      <div className="arrow-wrapper">
+      <div className={`arrow-wrapper ${disableNext() ? "disabled" : ""}`}>
         <img
           src={nextArrow}
           alt="next"
-          className={`arrow next-arrow ${disableNext() ? "disabled" : ""}`}
+          className="arrow next-arrow"
           onClick={disableNext() ? undefined : handleNext}
         />
       </div>
