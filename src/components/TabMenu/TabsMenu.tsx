@@ -111,15 +111,14 @@ const TabsMenu = ({ tabs, selectedTab, changeSelectedTab }: TabsMenuProps) => {
         />
       </div>
 
-      
       <div className="times-wrapper">
         <p>
           <span className="time-label">From:</span>{" "}
-          <span>{formatDate(timePeriodEnd)}</span>
+          <span>{formatDate(timePeriodStart)}</span>
         </p>
         <p>
           <span className="time-label">To:</span>{" "}
-          <span>{formatDate(timePeriodStart)}</span>
+          <span>{formatDate(timePeriodEnd)}</span>
         </p>
       </div>
     </div>
