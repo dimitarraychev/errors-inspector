@@ -44,6 +44,8 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
   const [timePeriodStart, setTimePeriodStart] = useState(defaultRange.start);
   const [timePeriodEnd, setTimePeriodEnd] = useState(defaultRange.end);
 
+  const BASE_URL = "/api/error-report";
+
   const getReport = async () => {
     setLoading(true);
     setError(null);
@@ -60,7 +62,7 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
         params.set("start", startDate.toISOString());
       }
 
-      const res = await fetch(`/api/report?${params.toString()}`);
+      const res = await fetch(`${BASE_URL}?${params.toString()}`);
 
       if (!res.ok) {
         throw new Error(`Failed to fetch reports: ${res.status}`);
