@@ -7,7 +7,8 @@
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
 }
 
-.custom-tooltip .time-label {
+.custom-tooltip .time-label,
+.custom-tooltip .data-key {
   color: var(--text-secondary);
 }
 
@@ -29,7 +30,7 @@
   pointer-events: auto;
 }
 
-.custom-tooltip .endpoint-name {
+.endpoints-title {
   color: var(--text-secondary);
 }
 
