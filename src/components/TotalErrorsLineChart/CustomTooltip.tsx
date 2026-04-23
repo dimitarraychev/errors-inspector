@@ -50,7 +50,8 @@ const CustomTooltip = ({ active, payload, label }: any) => {
             </div>
           </div>
         ) : (
-          report?.codes && (
+          report?.codes &&
+          selectedCodes.length === 0 && (
             <div className="endpoints-wrapper">
               <p className="endpoints-title">Codes:</p>
 

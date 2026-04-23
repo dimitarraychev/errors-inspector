@@ -44,7 +44,7 @@ const TotalErrorsLineChart = () => {
   return (
     <LineChart
       width={"100%"}
-      height={"97%"}
+      height={"95%"}
       data={chartData}
       margin={{ bottom: 80, right: 30, top: 30 }}
       responsive={true}

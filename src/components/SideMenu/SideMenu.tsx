@@ -3,7 +3,6 @@ import logo from "../../assets/logo.svg";
 import menuLogo from "../../assets/menu.svg";
 import { useReportContext } from "../../context/ReportContext";
 import { getCodeColor } from "../../utils/codeColors";
-// import { formatDate } from "../../utils/date";
 
 interface SideMenuProps {
   isCollapsed: boolean;
@@ -15,8 +14,6 @@ const SideMenu = ({ isCollapsed, onCollapseToggle }: SideMenuProps) => {
     data,
     selectedCodes,
     setSelectedCodes,
-    // timePeriodStart,
-    // timePeriodEnd,
   } = useReportContext();
 
   const codeTotals = data.codes;
@@ -61,7 +58,7 @@ const SideMenu = ({ isCollapsed, onCollapseToggle }: SideMenuProps) => {
             }}
           />
 
-          <span>All</span>
+          <span>All Codes</span>
           <span>{data.total}</span>
         </li>
 

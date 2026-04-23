@@ -4,6 +4,7 @@ import prevArrow from "../../assets/prev-arrow.svg";
 import nextArrow from "../../assets/next-arrow.svg";
 import { useReportContext } from "../../context/ReportContext";
 import { formatDate, parsePeriodToHours } from "../../utils/date";
+import StatusBar from "../StatusBar/StatusBar";
 
 interface TabsMenuProps {
   tabs: string[];
@@ -113,6 +114,8 @@ const TabsMenu = ({ tabs, selectedTab, changeSelectedTab }: TabsMenuProps) => {
           onClick={disableNext() ? undefined : handleNext}
         />
       </div>
+
+      <StatusBar />
 
       <div className="times-wrapper">
         <p>

@@ -1,0 +1,19 @@
+.status-bar {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-left: 2rem;
+}
+
+.status-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.status-bar .status-name {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}

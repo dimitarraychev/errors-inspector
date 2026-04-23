@@ -10,17 +10,8 @@ export const formatDate = (isoString: string) => {
   return `${hours}:${minutes} ${day}.${month}.${year}`;
 };
 
-export const shortFormatDate = (
-  isoString: string,
-  // start?: string,
-  // end: string,
-) => {
+export const shortFormatDate = (isoString: string) => {
   const d = new Date(isoString);
-
-  // const startDate = new Date(start);
-  // const endDate = new Date(end);
-  // const diffMs = endDate.getTime() - startDate.getTime();
-  // const diffHours = diffMs / (1000 * 60 * 60);
 
   const day = String(d.getDate()).padStart(2, "0");
   const month = String(d.getMonth() + 1).padStart(2, "0");
