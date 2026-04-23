@@ -14,7 +14,9 @@ const StatusBar = () => {
 
     const min = Math.min(...totals);
     const max = Math.max(...totals);
-    const avg = totals.reduce((sum, val) => sum + val, 0) / totals.length;
+    const avg = Math.round(
+      totals.reduce((sum, val) => sum + val, 0) / totals.length,
+    );
 
     return { min, avg, max };
   }, [data.reports]);
