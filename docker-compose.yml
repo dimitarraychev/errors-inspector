@@ -1,0 +1,13 @@
+services:
+  errors-inspector:
+    build: .
+    image: errors-inspector:latest
+    container_name: errors-inspector
+    ports:
+      - "8086:80"
+    restart: always
+
+networks:
+  default:
+    name: global-link
+    external: true

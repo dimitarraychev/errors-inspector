@@ -44,7 +44,7 @@ const ReportContextProvider = ({ children }: ReportContextProviderProps) => {
   const [timePeriodStart, setTimePeriodStart] = useState(defaultRange.start);
   const [timePeriodEnd, setTimePeriodEnd] = useState(defaultRange.end);
 
-  const BASE_URL = "/api/error-report";
+  const BASE_URL = "http://45.128.98.99:3002/error-report";
 
   const getReport = async () => {
     setLoading(true);
